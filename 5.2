@@ -1,0 +1,49 @@
+from gpiozero import LED
+from tkinter import *
+
+
+LED_red = LED(18)
+LED_green = LED(23)
+LED_blue = LED(24)
+    
+def ON_red():
+    LED_red.on()
+    LED_green.off()
+    LED_blue.off()
+    
+def ON_green():
+    LED_red.off()
+    LED_green.on()
+    LED_blue.off()
+
+def ON_blue():
+    LED_red.off()
+    LED_green.off()
+    LED_blue.on()
+    
+def offbutton():
+    LED_red.off()
+    LED_green.off()
+    LED_blue.off()
+    gui.destroy()
+    
+LED_red.off()
+LED_green.off()
+LED_blue.off()
+    
+gui = Tk()
+gui.title("LED CONTROL")
+
+Button_Red = Radiobutton(gui, text = "RED",value = 0, command = ON_red, bg = "red", height = 5, width = 15)
+Button_Red.grid(row = 0, column = 1)
+
+Button_Green = Radiobutton(gui, text = "GREEN",value = 1, command = ON_green, bg = "green", height = 5, width = 15)
+Button_Green.grid(row = 1,column = 1)
+
+Button_Blue = Radiobutton(gui, text = "BLUE",value = 2, command = ON_blue, bg = "blue", height = 5, width = 15)
+Button_Blue.grid(row = 2, column = 1)
+
+Button_Off = Button(gui, text = "POWER OFF",border = 4, command = offbutton, bg = "gray", height = 5, width = 15)
+Button_Off.grid(row = 3, column = 1)
+
+gui.mainloop()
